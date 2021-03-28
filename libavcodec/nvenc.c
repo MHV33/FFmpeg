@@ -358,9 +358,10 @@ static int nvenc_check_capabilities(AVCodecContext *avctx)
     }
 
     ret = nvenc_check_cap(avctx, NV_ENC_CAPS_SUPPORT_LOSSLESS_ENCODE);
+    av_log(avctx, AV_LOG_WARNING, "Lossless ret: %d\n", ret);
     if (ctx->preset >= PRESET_LOSSLESS_DEFAULT && ret <= 0) {
         av_log(avctx, AV_LOG_WARNING, "Lossless encoding not supported\n");
-        return AVERROR(ENOSYS);
+        //return AVERROR(ENOSYS);
     }
 
     ret = nvenc_check_cap(avctx, NV_ENC_CAPS_WIDTH_MAX);
